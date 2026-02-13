@@ -1,7 +1,44 @@
-Actores indirectos
+*Stakeholders directos*
+Personal de Control de Acceso/Usuario
+Descripción:
+Persona encargada de validar el ingreso de los asistentes mediante dispositivos de lectura de tickets. Opera el sistema en tiempo real durante el evento y gestiona incidencias básicas de acceso.
+
+Supervisor de Operaciones del Evento/Usuario
+Descripción:
+Responsable de coordinar el flujo de asistentes durante el evento. Utiliza el sistema para supervisar el estado de los accesos y tomar decisiones operativas en el sitio.
+
+Operador Técnico del Sistema de Accesos/Usuario
+Descripción:
+Encargado de la configuración, monitoreo y soporte técnico de los dispositivos y la plataforma de control de accesos antes y durante el evento.
 
 
+Organizador / Promotor del Evento / Cliente
+Descripción:
+Entidad que contrata o solicita la implementación del sistema de control de accesos para gestionar el ingreso de asistentes al evento.
 
+Administración del Recinto/Cliente
+Descripción:
+Entidad propietaria o gestora del espacio físico donde se realiza el evento. Requiere el sistema para garantizar orden, seguridad y control de ingreso al recinto.
 
+*Stakeholders indirectos*
+Asistentes / Espectadores
+Descripción:
+Personas que asisten al evento y presentan una credencial para ingresar, pero no interactúan directamente con el sistema ni participan en su contratación.
 
-Actores directos
+Autoridades de Seguridad y Emergencias
+Descripción:
+Organismos externos que pueden requerir información general sobre el ingreso de personas para fines de seguridad, control o auditoría.
+
+3.3. Equipo Legal y de Cumplimiento
+
+Tipo: Stakeholder indirecto
+
+Descripción:
+Área responsable de verificar que los procesos de acceso cumplan con normativas legales y contractuales vigentes.
+
+3.4. Proveedores de Infraestructura Tecnológica
+
+Tipo: Stakeholder indirecto
+
+Descripción:
+Empresas que suministran hardware o servicios tecnológicos compatibles con el sistema de control de accesos.
