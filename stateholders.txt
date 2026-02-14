@@ -11,7 +11,6 @@ Operador Técnico del Sistema de Accesos/Usuario
 Descripción:
 Encargado de la configuración, monitoreo y soporte técnico de los dispositivos y la plataforma de control de accesos antes y durante el evento.
 
-
 Organizador / Promotor del Evento / Cliente
 Descripción:
 Entidad que contrata o solicita la implementación del sistema de control de accesos para gestionar el ingreso de asistentes al evento.
@@ -29,16 +28,10 @@ Autoridades de Seguridad y Emergencias
 Descripción:
 Organismos externos que pueden requerir información general sobre el ingreso de personas para fines de seguridad, control o auditoría.
 
-3.3. Equipo Legal y de Cumplimiento
-
-Tipo: Stakeholder indirecto
-
+Equipo Legal y de Cumplimiento
 Descripción:
 Área responsable de verificar que los procesos de acceso cumplan con normativas legales y contractuales vigentes.
 
-3.4. Proveedores de Infraestructura Tecnológica
-
-Tipo: Stakeholder indirecto
-
+Proveedores de Infraestructura Tecnológica
 Descripción:
 Empresas que suministran hardware o servicios tecnológicos compatibles con el sistema de control de accesos.
