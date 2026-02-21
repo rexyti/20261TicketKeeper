@@ -1,4 +1,4 @@
-*Stakeholders directos*
+*Stakeholders directos* ///
 Personal de Control de Acceso/Usuario
 Descripción:
 Persona encargada de validar el ingreso de los asistentes mediante dispositivos de lectura de tickets. Opera el sistema en tiempo real durante el evento y gestiona incidencias básicas de acceso.
