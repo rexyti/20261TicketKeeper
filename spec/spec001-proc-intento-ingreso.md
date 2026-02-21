@@ -172,12 +172,15 @@ activa.
 **Ticket**:
     Representa la credencial de acceso.
     Atributos clave: id, código único, estado, categoría, zona permitida, sesión/evento, fecha, indicador de usado.
+
 **IntentoIngreso**:
     Representa cada intento de validación de acceso.
     Atributos: id, ticket_id, fecha_hora, lector_id, resultado (aprobado/rechazado), código_error.
+
 **Lector/Puerta**:
     Representa el dispositivo o acceso físico.
     Atributos: id, zona_asignada, estado.
+
 **Sesión/Evento**:
     Representa la instancia temporal del evento.
     Atributos: id, fecha, estado (activa/inactiva).
@@ -192,8 +195,12 @@ activa.
 ### Measurable Outcomes
 
  -**SC-001**: 100% de los intentos de ingreso generan un registro auditable.
+
  -**SC-002**: El sistema responde a un intento de escaneo en menos de 2 segundos en condiciones normales.
+
  -**SC-003**: 0 casos de doble ingreso para un mismo ticket bajo condiciones de concurrencia.
+
  -**SC-004**: 99% de los intentos válidos son autorizados correctamente sin intervención manual.
+ 
  -**SC-005**: 100% de los rechazos muestran un código de error correspondiente al diccionario definido.
 
