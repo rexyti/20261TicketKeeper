@@ -191,9 +191,9 @@ activa.
 
 ### Measurable Outcomes
 
-  -**SC-001**: 100% de los intentos de ingreso generan un registro auditable.
-  -**SC-002**: El sistema responde a un intento de escaneo en menos de 2 segundos en condiciones normales.
-  -**SC-003**: 0 casos de doble ingreso para un mismo ticket bajo condiciones de concurrencia.
-  -**SC-004**: 99% de los intentos válidos son autorizados correctamente sin intervención manual.
-  -**SC-005**: 100% de los rechazos muestran un código de error correspondiente al diccionario definido.
+ -**SC-001**: 100% de los intentos de ingreso generan un registro auditable.
+ -**SC-002**: El sistema responde a un intento de escaneo en menos de 2 segundos en condiciones normales.
+ -**SC-003**: 0 casos de doble ingreso para un mismo ticket bajo condiciones de concurrencia.
+ -**SC-004**: 99% de los intentos válidos son autorizados correctamente sin intervención manual.
+ -**SC-005**: 100% de los rechazos muestran un código de error correspondiente al diccionario definido.
 
