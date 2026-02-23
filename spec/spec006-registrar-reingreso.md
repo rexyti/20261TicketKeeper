@@ -1,6 +1,5 @@
-# Feature Specification: [Procesar intento de ingreso]
-
-**Created**: 21-02-2026 
+# Feature Specification: Registrar re-ingreso
+**Created**: 23-02-2026
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -17,42 +16,40 @@
   - Demonstrated to users independently
 -->
 
-### User Story 1 - Validar y procesar intento de ingreso exitoso (Priority: P1)
+### User Story 1 - Autorizar re-ingreso válido (Priority: P1)
 
-Yo como encargado de control de acceso escaneo un ticket y el sistema valida su estado, zona y sesión. Si todo es correcto, el sistema registra el ingreso (check-in) y permite el acceso.
+Yo como encargado de control de acceso escaneo un ticket que ya fue utilizado previamente, pero que tiene permitido re-ingreso según la configuración del evento. El sistema valida la política de re-ingreso y, si está permitido, registra un nuevo acceso..
 
 **Why this priority**:
 
-Es la funcionalidad núcleo del sistema de control de acceso. Sin esto, el sistema no cumple su propósito principal.
+Permite controlar salidas temporales (ej. fumar, ir al estacionamiento, etc.) sin comprometer la seguridad del evento. Es crítica cuando el evento habilita re-ingreso.
 
 **Independent Test**: 
 
-Puede probarse escaneando un ticket válido en una puerta autorizada. Si el sistema registra el check-in y devuelve estado "Ingreso autorizado", el MVP es funcional.
+Escanear un ticket previamente ingresado que tenga bandera de “re-ingreso permitido”. Si el sistema registra el nuevo acceso y devuelve “Re-ingreso autorizado”, el MVP es funcional.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: Ingreso válido autorizado
-   - **Given** un ticket existente con estado válido para ingreso
-   - **When** el encargado escanea el ticket
-   - **Then** el sistema registra el check-in
-
+1. **Scenario**: Re-ingreso permitido correctamente
+   - **Given** un ticket previamente ingresado
+   - **When** el encargado escanea el ticket nuevamente
+   - **Then** el sistema registra el re-ingreso
 ---
 
-### User Story 2 - Rechazar intento por ticket duplicado (P)riority: P1
+### User Story 2 - Rechazar re-ingreso no permitido (P)riority: P1
 
-Yo como encargado escaneo un ticket que ya fue procesado previamente en otro lector.
-
+Yo como encargado escaneo un ticket previamente usado, pero el evento no permite re-ingreso.
 **Why this priority**:
 
-Evita fraude y reuso de credenciales. Es crítico para la seguridad del evento.
+Evita vulnerabilidades de seguridad cuando el evento tiene política de ingreso único.
 
 **Independent Test**:
 
-Escanear dos veces el mismo ticket en lectores distintos. El segundo intento debe generar error “Ticket Duplicado”.
+Escanear un ticket ya ingresado en un evento con política “sin re-ingreso”. El sistema debe devolver “Re-ingreso no permitido”.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: Ticket ya procesado
+1. **Scenario**: Evento sin política de re-ingreso
    - **Given** un ticket que ya tiene un registro previo de check-in
    - **When** el encargado escanea nuevamente el ticket
    - **Then** el sistema rechaza el intento
