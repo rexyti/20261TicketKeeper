@@ -1,6 +1,6 @@
-# Feature Specification: [Procesar intento de ingreso]
+# Feature Specification: Informar estado del tickect
 
-**Created**: [DATE]  
+**Created**: 22/02/2026  
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -17,46 +17,52 @@
   - Demonstrated to users independently
 -->
 
-### User Story 1 - [Brief Title] (Priority: P1)
+### User Story 1 - Consultar estado de un tickect válido (Priority: P1)
 
-Yo como encargado como control de acceso tengo que validar un ticket
+Yo como encargado de control de acceso quiero consultar el estado de un ticket 
+para informar al asistente si es válido, usado, cancelado o inválido sin procesar ingreso.
 
-**Why this priority**: Porque es el modulo principal...
+**Why this priority**: Permite atención al público, resolución de dudas y soporte sin afectar el control de accesos. Es el caso base del feature.
 
-**Independent Test**: 
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: El asistente quiere ingresar con tickect válido
-   - **Given** Tickectk
-   - **When** 
-   - **Then** [expected outcome]
-
-2. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
----
-
-### User Story 2 - [Brief Title] (Priority: P2)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
+**Independent Test**: Consultar un ticket existente y verificar que el sistema devuelve su estado actual sin modificar datos.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
+1. **Scenario**: Ticket activo y no usado
+   - **Given** Un ticket existente con estado “activo” y sin registro de ingreso
+   - **When** el encargado consulta el ticket
+   - **Then** el sistema informa “Ticket válido – no utilizado
+
+2. **Scenario**: Ticket ya utilizado
+   - **Given** un ticket con registro previo de check-in
+   - **When** se consulta el ticket
+   - **Then** el sistema informa “Ticket ya utilizado” y muestra fecha/hora del ingreso
 
 ---
 
-[Add more user stories as needed, each with an assigned priority]
+### User Story 2 - Informar ticket con estado inválido (Priority: P2)
+
+Yo como encargado quiero saber si un ticket está cancelado, reembolsado o bloqueado para informar correctamente al asistente.
+
+**Why this priority**: Reduce conflictos y evita intentos innecesarios de ingreso.
+
+**Independent Test**: Consultar tickets con distintos estados inválidos y verificar la respuesta correcta.
+
+**Acceptance Scenarios**:
+
+1. **Scenario**: Ticket cancelado
+   - **Given** un ticket con estado “cancelado”
+   - **When** se consulta el ticket
+   - **Then** el sistema informa “Ticket cancelado – ingreso no permitido”
+   
+2. **Scenario**: Ticket bloqueado
+   - **Given** un ticket con estado “bloqueado”
+   - **When** se consulta
+   - **Then** el sistema informa “Ticket bloqueado”
+
+---
+
+
 
 ### Edge Cases
 
@@ -65,8 +71,14 @@ Yo como encargado como control de acceso tengo que validar un ticket
   Fill them out with the right edge cases.
 -->
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+¿Qué pasa si el ticket existe pero tiene datos incompletos?
+→ El sistema debe informar “Ticket con datos inconsistentes” y registrar el error.
+
+¿Qué pasa si la base de datos no está disponible?
+→ El sistema devuelve error técnico sin mostrar estado del ticket.
+
+¿Qué pasa si el ticket fue usado hace segundos?
+→ El sistema debe reflejar el estado actualizado (consistencia fuerte).
 
 ## Requirements *(mandatory)*
 
@@ -77,21 +89,35 @@ Yo como encargado como control de acceso tengo que validar un ticket
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+FR-001: System MUST permitir consultar un ticket por código único.
 
-*Example of marking unclear requirements:*
+FR-002: System MUST validar la existencia del ticket.
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+FR-003: System MUST obtener y devolver el estado actual del ticket.
+
+FR-004: System MUST indicar si el ticket fue usado previamente.
+
+FR-005: System MUST informar sesión/evento asociado al ticket.
+
+FR-006: System MUST NO modificar el estado del ticket durante la consulta.
+
+FR-007: System MUST devolver un resultado estructurado con estado y mensaje descriptivo.
+
+FR-008: System MUST registrar la consulta para auditoría (opcional según configuración).
+
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+Ticket
+Representa la credencial de acceso.
+Atributos clave: id, código, estado, sesión/evento, zona, indicador de usado.
+
+ConsultaTicket
+Representa una acción de consulta.
+Atributos: id, ticket_id (nullable), fecha_hora, actor, resultado.
+
+Sesión/Evento
+Atributos: id, fecha, estado.
 
 ## Success Criteria *(mandatory)*
 
@@ -102,8 +128,12 @@ Yo como encargado como control de acceso tengo que validar un ticket
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+SC-001: 100% de las consultas devuelven un estado claro y comprensible.
 
+SC-002: Tiempo de respuesta menor a 1 segundo en condiciones normales.
+
+SC-003: 0% de consultas generan cambios en el estado del ticket.
+
+SC-004: 100% de tickets inexistentes son detectados correctamente.
+
+SC-005: El personal puede informar el estado del ticket sin necesidad de procesar ingreso.
