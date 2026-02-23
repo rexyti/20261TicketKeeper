@@ -18,7 +18,7 @@
 
 ### User Story 1 - Autorizar re-ingreso válido (Priority: P1)
 
-Yo como encargado de control de acceso escaneo un ticket que ya fue utilizado previamente, pero que tiene permitido re-ingreso según la configuración del evento. El sistema valida la política de re-ingreso y, si está permitido, registra un nuevo acceso..
+Yo como encargado de control de acceso escaneo un ticket que ya fue utilizado previamente, pero que tiene permitido re-ingreso según la configuración del evento. El sistema valida la política de re-ingreso y, si está permitido, registra un nuevo acceso.
 
 **Why this priority**:
 
