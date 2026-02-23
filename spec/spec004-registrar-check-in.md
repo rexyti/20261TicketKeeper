@@ -1,4 +1,4 @@
-# Feature Specification: [FEATURE NAME]
+# Feature Specification: Registro de Check in 
 
 **Created**: [DATE]
 
@@ -16,21 +16,19 @@
   - Demonstrated to users independently
 -->
 
-### User Story 1 - [Brief Title] (Priority: P1)
+### User Story 1 - Validacion y Registro de ingreso exitoso (Priority: P1)
 
-[Describe this user journey in plain language]
+Como encargado de control de acceso, quiero registrar el check-in de un asistente escaneando su ticket para permitir su ingreso si es válido.
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**Why this priority**:Es el núcleo de la operación del evento; sin esto, no hay control de aforo ni seguridad en el recinto y afecta la experiencia del asistente.
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
-
+**Independent Test**: Puede probarse escaneando un ticket válido previamente no utilizado y verificando que cambie de estado a “Ingreso Autorizado”; se registre hora, fecha y puerta; y que permita el acceso.
 **Acceptance Scenarios**:
 
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
+1. **Scenario**: Ingreso exitoso por puerta correcta.
+   - **Given** Un asistente con un ticket válido, activo.
+   - **When** El encargado procesa el intento de ingreso.
+   - **Then** El sistema registra el check-in como "Exitoso" y actualiza la capacidad del recinto.
 2. **Scenario**: [Descriptive scenario name]
    - **Given** [initial state]
    - **When** [action]
