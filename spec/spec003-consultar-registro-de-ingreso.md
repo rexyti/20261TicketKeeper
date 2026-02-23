@@ -1,6 +1,6 @@
-hj# Feature Specification: [Procesar intento de ingreso]
+# Feature Specification: Consultar Registro de Ingreso
 
-**Created**: [DATE]  
+**Created**:23/02/2026
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -17,46 +17,45 @@ hj# Feature Specification: [Procesar intento de ingreso]
   - Demonstrated to users independently
 -->
 
-### User Story 1 - [Brief Title] (Priority: P1)
+### User Story 1 - Consulta de registro por ticket (Priority: P1)
 
-Yo como encargado como control de acceso tengo que validar un ticket
+El módulo de liquidación de fondos consulta el registro de ingreso de un ticket específico para determinar si el asistente ingresó al evento.
 
-**Why this priority**: Porque es el modulo principal...
+**Why this priority**: 
+Es crítico para el cálculo de liquidaciones, ya que los pagos dependen del estado final del ticket (validado o no asistió).
+**Independent Test**: 
+Puede probarse consultando un ticket previamente registrado como check-in y verificando que el sistema retorne el estado correcto sin depender de otras funcionalidades adicionales.
+
+**Acceptance Scenarios**:
+
+1. **Scenario**: Ticket con ingreso registrado
+   - **Given** un ticket con check-in registrado
+   - **When** el módulo de liquidación consulta el registro de ingreso
+   - **Then** el sistema retorna estado “Validado” con fecha y hora de ingreso
+
+2. **Scenario**: Ticket sin ingreso registrado
+   - **Given** un ticket vendido sin check-in registrado
+   - **When** el módulo de liquidación consulta el registro
+   - **Then** el sistema retorna estado “Vendido – No asistió”
+---
+
+### User Story 2 - Consulta de registros por evento (Priority: P2)
+
+El módulo de liquidación consulta todos los registros de ingreso asociados a un evento para calcular el total de asistentes efectivos.
+
+**Why this priority**: 
+Permite realizar liquidaciones globales y generar reportes financieros del evento.
 
 **Independent Test**: 
+Puede probarse consultando los registros de un evento con múltiples tickets en distintos estados y validando que el total coincida con los registros almacenados.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: El asistente quiere ingresar con tickect válido
-   - **Given** Tickectk
-   - **When** 
-   - **Then** [expected outcome]
-
-2. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
+1. **Scenario**: Consulta masiva exitosa
+   - **Given** un evento con múltiples registros de ingreso
+   - **When** el módulo solicita los registros del evento
+   - **Then** el sistema retorna la lista completa de tickets con su estado final
 ---
-
-### User Story 2 - [Brief Title] (Priority: P2)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
----
-
-[Add more user stories as needed, each with an assigned priority]
 
 ### Edge Cases
 
@@ -65,8 +64,13 @@ Yo como encargado como control de acceso tengo que validar un ticket
   Fill them out with the right edge cases.
 -->
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+- ¿Qué pasa si se consulta un ticket inexistente?
+  El sistema debe retornar mensaje “Ticket no encontrado” sin afectar otros registros.
+-¿Qué pasa si no existen registros para el evento consultado?
+  El sistema debe retornar lista vacía.
+- ¿Qué pasa si hay inconsistencia entre estado del ticket y registro de ingreso?
+  El sistema debe priorizar el registro de ingreso como fuente de verdad y registrar el incidente en logs.
+
 
 ## Requirements *(mandatory)*
 
