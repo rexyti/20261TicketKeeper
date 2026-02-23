@@ -90,9 +90,9 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Entity 1]**: Registro de Ingreso: Representa la confirmación de acceso al evento. Atributos clave: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, estadoIngreso.
-- **[Entity 2]**: Ticket: Identificador único asociado a un asistente y a un evento.
-- **[Entity 3]**: Evento: Entidad que agrupa múltiples tickets y registros de ingreso.
+- **Registro de Ingreso:** Representa la confirmación de acceso al evento. Atributos clave: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, estadoIngreso.
+- **Ticket:** Identificador único asociado a un asistente y a un evento.
+- **Evento:** Entidad que agrupa múltiples tickets y registros de ingreso.
 
 ## Success Criteria *(mandatory)*
 
