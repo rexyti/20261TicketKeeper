@@ -36,34 +36,15 @@ Como encargado de control de acceso, quiero registrar el check-in de un asistent
 
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
----
-
-[Add more user stories as needed, each with an assigned priority]
 
 ### Edge Cases
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
+-	¿Qué pasa cuando la red falla en el punto de acceso? El sistema debe permitir el procesamiento offline o mostrar un error de comunicación inmediato.
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+-	¿Cómo maneja el sistema un ticket de una zona diferente? El sistema debe emitir una alerta de "Zona Incorrecta" si el acceso no está vinculado a la categoría del ticket.
+
+
+
 
 ## Requirements *(mandatory)*
 
