@@ -81,21 +81,18 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-001**: El sistema debe permitir consultar el registro de ingreso de un ticket específico.
+- **FR-002**: El sistema debe retornar el estado final del ticket (Validado / No asistió).
+- **FR-003**: El sistema debe incluir fecha y hora de ingreso cuando exista check-in.
+- **FR-004**: El sistema debe permitir consultar todos los registros de ingreso por evento.
+- **FR-005**: El sistema debe registrar en logs las consultas realizadas por módulos externos.
+- **FR-006**: El sistema debe responder a las consultas en tiempo real.
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **[Entity 1]**: Registro de Ingreso: Representa la confirmación de acceso al evento. Atributos clave: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, estadoIngreso.
+- **[Entity 2]**: Ticket: Identificador único asociado a un asistente y a un evento.
+- **[Entity 3]**: Evento: Entidad que agrupa múltiples tickets y registros de ingreso.
 
 ## Success Criteria *(mandatory)*
 
@@ -106,8 +103,8 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-001**: 100% de las consultas de tickets existentes retornan estado correcto.
+- **SC-002**: Tiempo de respuesta promedio menor a 2 segundos por consulta.
+- **SC-003**: 0 inconsistencias detectadas entre registro de ingreso y estado consultado en pruebas de integración.
+- **SC-004**: El módulo de liquidación puede completar el cálculo financiero sin errores derivados de esta consulta.
 
