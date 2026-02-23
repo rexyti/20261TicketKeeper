@@ -17,25 +17,19 @@
   - Demonstrated to users independently
 -->
 
-### User Story 1 - Validar y procesar intento de ingreso exitoso (Priority: P1)
+### User Story 1 - Validacion y Registro de ingreso exitoso (Priority: P1)
 
-Yo como encargado de control de acceso escaneo un ticket y el sistema valida su estado, zona y sesión. Si todo es correcto, el sistema registra el ingreso (check-in) y permite el acceso.
+Como encargado de control de acceso, quiero registrar el check-in de un asistente escaneando su ticket para permitir su ingreso si es válido.
 
-**Why this priority**:
+**Why this priority**:Es el núcleo de la operación del evento; sin esto, no hay control de aforo ni seguridad en el recinto y afecta la experiencia del asistente.
 
-Es la funcionalidad núcleo del sistema de control de acceso. Sin esto, el sistema no cumple su propósito principal.
-
-**Independent Test**: 
-
-Puede probarse escaneando un ticket válido en una puerta autorizada. Si el sistema registra el check-in y devuelve estado "Ingreso autorizado", el MVP es funcional.
-
+**Independent Test**: Puede probarse escaneando un ticket válido previamente no utilizado y verificando que cambie de estado a “Ingreso Autorizado”; se registre hora, fecha y puerta; y que permita el acceso.
 **Acceptance Scenarios**:
 
-1. **Scenario**: Ingreso válido autorizado
-   - **Given** un ticket existente con estado válido para ingreso
-   - **When** el encargado escanea el ticket
-   - **Then** el sistema registra el check-in
-
+1. **Scenario**: Ingreso exitoso por puerta correcta.
+   - **Given** Un asistente con un ticket válido, activo.
+   - **When** El encargado procesa el intento de ingreso.
+   - **Then** El sistema registra el check-in como "Exitoso" y actualiza la capacidad del recinto.
 ---
 
 ### User Story 2 - Rechazar intento por ticket duplicado (P)riority: P1
@@ -121,6 +115,27 @@ Escanear ticket de evento pasado o distinto. El sistema debe devolver “Sesión
    - **Then** el sistema rechaza el intento
 
 ---
+### User Story 6 - Asociar contexto del intento fallido (Priority: P1)
+
+Yo como auditor del sistema necesito que cada intento fallido tenga contexto suficiente para su análisis posterior.
+
+**Why this priority**: 
+
+Sin contexto, el registro no tiene valor operativo ni legal.
+
+**Independent Test**:
+
+Revisar que cada intento fallido tenga información mínima obligatoria.
+
+**Acceptance Scenarios**:
+
+1. **Scenario**: Registro con datos completos
+   - **Given** un intento de ingreso rechazado
+   - **When** se registra el intento
+   - **Then** el sistema almacena fecha, lector, motivo y sesión
+
+---
+
 
 ### Edge Cases
 
@@ -135,6 +150,9 @@ Escanear ticket de evento pasado o distinto. El sistema debe devolver “Sesión
 
 ¿Qué pasa si el lector no tiene zona configurada?
 → El sistema debe rechazar el procesamiento y registrar error de configuración.
+
+¿Qué pasa si falla el almacenamiento del intento fallido?
+→ El sistema debe generar alerta técnica y no permitir continuar silenciosamente.
 
 ## Requirements *(mandatory)*
 
