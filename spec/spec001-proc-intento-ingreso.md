@@ -21,7 +21,7 @@
 
 Yo como encargado de control de acceso escaneo un ticket y el sistema valida su estado, zona y sesión. Si todo es correcto, el sistema registra el ingreso (check-in) y permite el acceso.
 
-**Why this priority**:
+**Why this prriority**:
 
 Es la funcionalidad núcleo del sistema de control de acceso. Sin esto, el sistema no cumple su propósito principal.
 
