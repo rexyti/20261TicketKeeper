@@ -41,12 +41,11 @@ Escanear un ticket previamente ingresado que tenga bandera de “re-ingreso perm
 ### User Story 2 - Rechazar re-ingreso no permitido (P)riority: P1
 
 Yo como encargado escaneo un ticket previamente usado, pero el evento no permite re-ingreso.
-**Why this priority**:
 
+**Why this priority**:
 Evita vulnerabilidades de seguridad cuando el evento tiene política de ingreso único.
 
 **Independent Test**:
-
 Escanear un ticket ya ingresado en un evento con política “sin re-ingreso”. El sistema debe devolver “Re-ingreso no permitido”.
 
 **Acceptance Scenarios**:
