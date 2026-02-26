@@ -1,4 +1,4 @@
-# Feature Specification: [Procesar intento de ingreso]
+# Feature Specification: [Asignar Puerta de Ingreso]
 
 **Created**: 21-02-2026 
 
@@ -17,124 +17,54 @@
   - Demonstrated to users independently
 -->
 
-### User Story 1 - Validar y procesar intento de ingreso exitoso (Priority: P1)
+### User Story 1 - Distribución de Accesos por Categoría (Priority: P1)
 
-Yo como encargado de control de acceso escaneo un ticket y el sistema valida su estado, zona y sesión. Si todo es correcto, el sistema registra el ingreso (check-in) y permite el acceso.
+Como Encargado de control de acceso, quiero vincular categorías de tickets específicos a puertas determinadas para distribuir el flujo de personas y minimizar los tiempos de espera.
 
 **Why this priority**:
 
-Es la funcionalidad núcleo del sistema de control de acceso. Sin esto, el sistema no cumple su propósito principal.
+Es fundamental para la logística del evento; sin una asignación previa, el sistema no puede validar si un usuario intenta ingresar por la "Zona Incorrecta".
 
 **Independent Test**: 
 
-Puede probarse escaneando un ticket válido en una puerta autorizada. Si el sistema registra el check-in y devuelve estado "Ingreso autorizado", el MVP es funcional.
+Se puede probar vinculando la "Puerta 1" exclusivamente a tickets de "Categoría VIP" y verificando que un ticket "General" sea rechazado en ese punto.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: Ingreso válido autorizado
-   - **Given** un ticket existente con estado válido para ingreso
-   - **When** el encargado escanea el ticket
-   - **Then** el sistema registra el check-in
+1. **Scenario**: Asignación exitosa de zona a puerta.
+   - **Given** Una lista de puertas disponibles y las categorías de tickets vendidos.
+   - **When**El encargado asigna la "Puerta 4" a la "Categoría General".
+   - **Then** El sistema actualiza las reglas de validación para que solo los tickets "General" sean marcados como "Exitosos" en esa puerta.
 
 ---
 
-### User Story 2 - Rechazar intento por ticket duplicado (P)riority: P1
+### User Story 2 - Validar capacidad de flujo por puerta (Priority: P2)
 
-Yo como encargado escaneo un ticket que ya fue procesado previamente en otro lector.
+Como Encargado de control de acceso, quiero verificar que la cantidad de tickets asignados a una puerta no supere su capacidad y poder modificar la asignación de puertas en tiempo real si una entrada presenta congestión, para redistribuir a los asistentes.
 
 **Why this priority**:
 
-Evita fraude y reuso de credenciales. Es crítico para la seguridad del evento.
+Permite la flexibilidad operativa ante imprevistos en la capacidad de procesamiento de los puntos de entrada.
 
 **Independent Test**:
 
-Escanear dos veces el mismo ticket en lectores distintos. El segundo intento debe generar error “Ticket Duplicado”.
+Test: Cambiar la configuración de una puerta activa y confirmar que el cambio se refleja inmediatamente en los dispositivos de escaneo.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: Ticket ya procesado
-   - **Given** un ticket que ya tiene un registro previo de check-in
-   - **When** el encargado escanea nuevamente el ticket
-   - **Then** el sistema rechaza el intento
-
----
-
-### User Story 3 - Rechazar ingreso por zona incorrecta (P)riority: P1
-
-Yo como encargado escaneo un ticket válido, pero en una puerta que no corresponde a su categoría o zona.
-
-**Why this priority**:
-
-Controla segmentación de accesos (VIP, general, staff, etc.).
-
-**Independent Test**:
-
-Escanear un ticket válido en una puerta distinta a la asignada. Debe devolver error “Zona Incorrecta”.
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: Acceso no autorizado por zona
-   - **Given** un ticket válido para zona A
-   - **When** se escanea el ticket
-   - **Then** el sistema rechaza el intento
-
----
-
-### User Story 4 - Rechazar ingreso por estado inválido (P)riority: P1
-
-Yo como encargado escaneo un ticket cuyo estado no permite ingreso (cancelado, reembolsado, bloqueado, etc.).
-
-**Why this priority**: 
-
-Garantiza que solo tickets activos puedan ingresar.
-
-**Independent Test**:
-
-Escanear un ticket con estado "cancelado". El sistema debe devolver “Estado inválido”.
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: Ticket con estado no válido
-   - **Given** un ticket con estado distinto a "activo"
-   - **When** se escanea el ticket
-   - **Then** el sistema rechaza el intento
-
----
-
-### User Story 5 - Rechazar ingreso por sesión inválida (P)riority: P1
-
-Yo como encargado escaneo un ticket correspondiente a otro evento o fecha.
-
-**Why this priority**: 
-
-Evita ingresos fuera de la fecha o evento correspondiente.
-
-**Independent Test**:
-
-Escanear ticket de evento pasado o distinto. El sistema debe devolver “Sesión Inválida”.
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: Ticket de evento distinto
-   - **Given** un ticket asociado a una sesión diferente a la activa
-   - **When** se escanea el ticket
-   - **Then** el sistema rechaza el intento
+1. **Scenario**: Re-asignación de puerta por alta demanda.
+   - **Given** La "Puerta 2" está saturada y la "Puerta 3" (sin asignación) está libre.
+   - **When** El encargado habilita la "Puerta 3" para la misma categoría de la "Puerta 2".
+   - **Then** El sistema permite el ingreso de esos tickets en ambos puntos de acceso.
 
 ---
 
 ### Edge Cases
+¿Qué pasa si se intenta desasignar una puerta que ya tiene registros de ingreso? 
+→ El sistema debe advertir que existen datos de ingreso vinculados, pero permitir la desasignación para evitar bloqueos operativos.
 
-¿Qué pasa si el ticket no existe en la base de datos?
-→ El sistema debe rechazar el intento y devolver error “Ticket no encontrado”, registrando el intento como fallido.
-
-¿Qué pasa si hay pérdida de conexión con la base de datos?
-→ El sistema debe devolver error técnico y no permitir el ingreso.
-
-¿Qué pasa si dos lectores procesan el mismo ticket exactamente al mismo tiempo?
-→ El sistema debe garantizar atomicidad y evitar doble check-in (control de concurrencia).
-
-¿Qué pasa si el lector no tiene zona configurada?
-→ El sistema debe rechazar el procesamiento y registrar error de configuración.
+¿Cómo maneja el sistema una puerta asignada a múltiples categorías conflictivas? 
+→El sistema debe validar que las categorías no se sobrepongan de forma que causen errores de "Zona Incorrecta" involuntarios 
 
 ## Requirements *(mandatory)*
 
@@ -146,44 +76,26 @@ Escanear ticket de evento pasado o distinto. El sistema debe devolver “Sesión
 ### Functional Requirements
 
 
--**FR-001**: System MUST validar la existencia del ticket en la base de datos.
+-**FR-001**: System MUST permitir visualizar el mapa de puertas y las categorías de tickets disponibles.
 
--**FR-002**: System MUST validar que el estado del ticket sea válido para ingreso.
+-**FR-002**: System MUST permitir la vinculación 1:N (una puerta a varias categorías) o N:1 (varias puertas a una categoría).
 
--**FR-003**: System MUST validar que la sesión/evento del ticket coincida con la sesión 
-activa.
+-**FR-003**: System MUST enviar las actualizaciones de asignación a los dispositivos de "Procesar intento de ingreso" de forma sincronizada.
 
--**FR-004**: System MUST validar que la puerta pertenezca a la zona autorizada para el ticket.
+-**FR-004**: System MUST permitir la consulta del flujo proyectado vs. el flujo real por puerta.
 
--**FR-005**: System MUST verificar que el ticket no haya sido previamente utilizado.
-
--**FR-006**: System MUST registrar el intento de ingreso (exitoso o fallido) con timestamp y lector.
-
--**FR-007**: System MUST devolver un resultado estructurado con estado (aprobado/rechazado) y código de error cuando corresponda.
-
--**FR-008**: System MUST garantizar control de concurrencia para evitar doble procesamiento.
-
--**FR-009**: System MUST actualizar el estado del ticket a “ingresado” cuando el intento sea exitoso.
-
--**FR-010**: System MUST almacenar el motivo de rechazo usando el diccionario de errores definido.
+-**FR-005**: System MUST bloquear el ingreso en puertas que no tengan una asignación activa.
 
 ### Key Entities 
 
-**Ticket**:
-    Representa la credencial de acceso.
-    Atributos clave: id, código único, estado, categoría, zona permitida, sesión/evento, fecha, indicador de usado.
+**Puerta**:
+    Representa cada punto fisico de acceso.
+    Atributos clave: id, nombre, capacidad, estado.
 
-**IntentoIngreso**:
-    Representa cada intento de validación de acceso.
-    Atributos: id, ticket_id, fecha_hora, lector_id, resultado (aprobado/rechazado), código_error.
+**Categoria de ticket**:
+    Representa la categoria de acceso de cada ticket (General, VIP, etc.).
+    Atributos: id,nombre, prioridad.
 
-**Lector/Puerta**:
-    Representa el dispositivo o acceso físico.
-    Atributos: id, zona_asignada, estado.
-
-**Sesión/Evento**:
-    Representa la instancia temporal del evento.
-    Atributos: id, fecha, estado (activa/inactiva).
 
 ## Success Criteria *(mandatory)*
 
@@ -194,13 +106,10 @@ activa.
 
 ### Measurable Outcomes
 
- -**SC-001**: 100% de los intentos de ingreso generan un registro auditable.
+ -**SC-001**: Un cambio en la asignación de puerta debe propagarse a todos los puntos de control en menos de 5 segundos.
 
- -**SC-002**: El sistema responde a un intento de escaneo en menos de 2 segundos en condiciones normales.
+ -**SC-002**: El sistema debe prevenir el 100% de los ingresos de "Zona Incorrecta" basados en la configuración de puertas vigente.
 
- -**SC-003**: 0 casos de doble ingreso para un mismo ticket bajo condiciones de concurrencia.
+ -**SC-003**: El encargado debe poder completar una asignación masiva de puertas en menos de 3 minutos antes del inicio del evento.
 
- -**SC-004**: 99% de los intentos válidos son autorizados correctamente sin intervención manual.
- 
- -**SC-005**: 100% de los rechazos muestran un código de error correspondiente al diccionario definido.
 
