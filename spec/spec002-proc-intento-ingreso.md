@@ -53,6 +53,8 @@ Escanear dos veces el mismo ticket en lectores distintos. El segundo intento deb
    - **Given** un ticket que ya tiene un registro previo de check-in
    - **When** el encargado escanea nuevamente el ticket
    - **Then** el sistema rechaza el intento
+   - **And** devuelve error "Ticket Duplicado"
+
 
 ---
 
@@ -75,6 +77,8 @@ Escanear un ticket válido en una puerta distinta a la asignada. Debe devolver e
    - **And** el lector pertenece a zona B
    - **When** se escanea el ticket
    - **Then** el sistema rechaza el intento
+   - **And** devuelve error "Zona Incorrecta"
+
 
 ---
 
@@ -96,6 +100,8 @@ Escanear un ticket con estado "cancelado". El sistema debe devolver “Estado in
    - **Given** un ticket con estado distinto a "activo"
    - **When** se escanea el ticket
    - **Then** el sistema rechaza el intento
+   - **And** devuelve error "Estado inválido"
+
 
 ---
 
@@ -117,6 +123,8 @@ Escanear ticket de evento pasado o distinto. El sistema debe devolver “Sesión
    - **Given** un ticket asociado a una sesión diferente a la activa
    - **When** se escanea el ticket
    - **Then** el sistema rechaza el intento
+   - **And** devuelve error "Sesión Inválida"
+
 
 ---
 ### User Story 6 - Asociar contexto del intento fallido (Priority: P1)
