@@ -21,7 +21,7 @@
 
 Como encargado de control de acceso, quiero registrar el check-in de un asistente escaneando su ticket para permitir su ingreso si es válido.
 
-**Why this priority**:Es el núcleo de la operación del evento; sin esto, no hay control de aforo ni seguridad en el recinto y afecta la experiencia del asistente.
+**Why this priority**:Es el núcleo de la operación del evento; con esto, hay control de aforo, seguridad en el recinto y mejora la experiencia del asistente.
 
 **Independent Test**: Puede probarse escaneando un ticket válido previamente no utilizado y verificando que cambie de estado a “Ingreso Autorizado”; se registre hora, fecha y puerta; y que permita el acceso.
 **Acceptance Scenarios**:
