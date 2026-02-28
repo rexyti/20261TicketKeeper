@@ -28,6 +28,9 @@ Como encargado de control de acceso, quiero registrar el check-in de un asistent
 
 1. **Scenario**: Ingreso exitoso por puerta correcta.
    - **Given** Un asistente con un ticket válido, activo.
+   - **And** el ticket pertenece a la sesión/evento actual.
+   - **And** la puerta corresponde a la zona permitida.
+   - **And** el ticket no ha sido previamente utilizado.
    - **When** El encargado procesa el intento de ingreso.
    - **Then** El sistema registra el check-in como "Exitoso" y actualiza la capacidad del recinto.
 ---
@@ -69,6 +72,7 @@ Escanear un ticket válido en una puerta distinta a la asignada. Debe devolver e
 
 1. **Scenario**: Acceso no autorizado por zona
    - **Given** un ticket válido para zona A
+   - **And** el lector pertenece a zona B
    - **When** se escanea el ticket
    - **Then** el sistema rechaza el intento
 
