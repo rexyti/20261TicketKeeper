@@ -86,6 +86,9 @@ Configurar límite de 2 re-ingresos. Al tercer intento, el sistema debe rechazar
 ¿Qué pasa si el ticket no tiene registro previo de ingreso?
 → El sistema debe tratarlo como primer ingreso y redirigir al flujo normal.
 
+¿Qué pasa si alguien con ticket duplicado entra en mi lugar cuando yo estoy afuera porque el evento permite re-ingreso?
+→ El sistema no se hace responsable.
+
 ¿Qué pasa si el evento permite re-ingreso pero el ticket fue cancelado después del primer ingreso?
 → El sistema debe rechazar el intento por estado inválido.
 
