@@ -152,7 +152,7 @@ Revisar que cada intento fallido tenga información mínima obligatoria.
 
 ### Edge Cases
 
-¿Qué pasa si el ticket no existe en la base de datos?
+¿Qué pasa si el ticket no existe en la informacion dada?
 → El sistema debe rechazar el intento y devolver error “Ticket no encontrado”, registrando el intento como fallido.
 
 ¿Qué pasa si hay pérdida de conexión con la base de datos?
