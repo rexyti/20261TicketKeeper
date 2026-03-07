@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="330476e6-2f73-4d33-b16f-01d7ef3465a1" name="Changes" comment="actualizacion a 5 specs">
+    <list default="true" id="330476e6-2f73-4d33-b16f-01d7ef3465a1" name="Changes" comment="Agregación de imagenes de posibles modelos del sistema">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posible_modelo_del_sistema/Denegado.png" beforeDir="false" afterPath="$PROJECT_DIR$/posible_modelo_del_sistema_png/denegado/Tickect_duplicado.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posible_modelo_del_sistema/Exitoso.png" beforeDir="false" afterPath="$PROJECT_DIR$/posible_modelo_del_sistema_png/exitoso/Exitoso.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posible_modelo_del_sistema/Historial_de_tickets.png" beforeDir="false" afterPath="$PROJECT_DIR$/posible_modelo_del_sistema_png/Sistema/Historial_de_tickets.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posible_modelo_del_sistema/reingreso.png" beforeDir="false" afterPath="$PROJECT_DIR$/posible_modelo_del_sistema_png/re-ingreso/reingreso.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +69,12 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\Modulo2\spec" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Desktop\Modulo2\posible_modelo_del_sistema_png\Sistema" />
+      <recent name="C:\Users\user\Desktop\Modulo2\posible_modelo_del_sistema_png\denegado" />
+      <recent name="C:\Users\user\Desktop\Modulo2\posible_modelo_del_sistema_png\exitoso" />
+      <recent name="C:\Users\user\Desktop\Modulo2\posible_modelo_del_sistema_png\re-ingreso" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -93,7 +103,12 @@
       <workItem from="1771884254635" duration="4283000" />
       <workItem from="1771889911434" duration="826000" />
       <workItem from="1772317639426" duration="17000" />
-      <workItem from="1772420859865" duration="472000" />
+      <workItem from="1772420859865" duration="830000" />
+      <workItem from="1772747743015" duration="8000" />
+      <workItem from="1772747773555" duration="2000" />
+      <workItem from="1772826206490" duration="184000" />
+      <workItem from="1772888736091" duration="75000" />
+      <workItem from="1772888846152" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="push">
       <option name="closed" value="true" />
@@ -151,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771890655633</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Agregación de imagenes de posibles modelos del sistema">
+      <option name="closed" value="true" />
+      <created>1772421589699</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772421589699</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +214,7 @@
     <MESSAGE value="creación spec 4" />
     <MESSAGE value="Creación de archivos md 4 últimos specs" />
     <MESSAGE value="actualizacion a 5 specs" />
-    <option name="LAST_COMMIT_MESSAGE" value="actualizacion a 5 specs" />
+    <MESSAGE value="Agregación de imagenes de posibles modelos del sistema" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregación de imagenes de posibles modelos del sistema" />
   </component>
 </project>
