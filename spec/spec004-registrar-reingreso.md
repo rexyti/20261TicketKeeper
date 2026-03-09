@@ -81,6 +81,29 @@ Configurar límite de 2 re-ingresos. Al tercer intento, el sistema debe rechazar
 
 ---
 
+### User Story 4 – Mostrar límite de reingresos (Priority: P2)
+
+Como encargado de control de acceso quiero visualizar si el ticket ha alcanzado el límite de reingresos permitidos para evitar accesos indebidos al evento.
+
+**Why this priority**:
+
+Permite controlar el uso indebido de tickets duplicados cuando los eventos permiten reingreso.
+
+**Independent Test**:
+
+Cuando un ticket intenta ingresar nuevamente, el sistema verifica el número de reingresos registrados.
+
+**Acceptance Scenario**
+
+1. **Scenario**: Mostrar contador de reingresos
+   - **Given** un ticket con reingresos previos
+   - **When** el encargado escanea el ticket
+   - **Then** el sistema muestra:
+          Reingresos usados: 1
+          Límite permitido: 2
+
+---
+
 ### Edge Cases
 
 ¿Qué pasa si el ticket no tiene registro previo de ingreso?
