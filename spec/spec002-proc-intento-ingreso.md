@@ -148,7 +148,26 @@ Revisar que cada intento fallido tenga información mínima obligatoria.
    - **Then** el sistema almacena fecha, lector, motivo y sesión
 
 ---
+### User Story 7 - Registrar ingreso manual cuando el lector QR falla (Priority: P2)
 
+Como encargado de control de acceso quiero registrar manualmente el código de un ticket cuando el lector QR no esté disponible, para permitir el ingreso del asistente sin detener la operación del evento.
+
+**Why this priority**: 
+
+Los dispositivos de escaneo pueden fallar. El sistema debe permitir continuar el control de acceso mediante ingreso manual.
+**Independent Test**:
+
+El encargado introduce manualmente el código del ticket, el sistema valida el ticket y registra el intento de ingreso igual que si hubiera sido escaneado.
+
+**Acceptance Scenarios**:
+
+1. **Scenario**: Registro manual exitoso
+   - **Given** el lector QR no funciona
+   - **When** el encargado ingresa manualmente el código del ticket
+   - **Then** El sistema valida el ticket
+   - **And** registra el intento de ingreso
+
+---
 
 ### Edge Cases
 
