@@ -57,9 +57,10 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
    - **Given** un evento con múltiples registros de ingreso
    - **When** el módulo de liquidación solicita los registros del evento
    - **Then** el sistema retorna la lista completa de tickets con:
--estado final del ticket
--fecha y hora de ingreso (si aplica)
--tipo de acceso (Ingreso o Reingreso)
+
+estado final del ticket
+fecha y hora de ingreso (si aplica)
+tipo de acceso (Ingreso o Reingreso)
 ---
 
 ### Edge Cases
