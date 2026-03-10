@@ -31,7 +31,7 @@ Puede probarse consultando un ticket previamente registrado como check-in y veri
 1. **Scenario**: Ticket con ingreso registrado
    - **Given** un ticket con check-in registrado
    - **When** el módulo de liquidación consulta el registro de ingreso
-   - **Then** el sistema retorna estado “Validado” con fecha y hora de ingreso
+   - **Then** el sistema retorna estado “Validado”
    - **And** incluye fecha y hora de ingreso
    - **And** el tipo de acceso (Ingreso o Reingreso)
 
@@ -56,7 +56,10 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 1. **Scenario**: Consulta masiva de registros
    - **Given** un evento con múltiples registros de ingreso
    - **When** el módulo de liquidacion solicita los registros del evento
-   - **Then** el sistema retorna la lista completa de tickets con:estado final del ticket, fecha y hora de ingreso (si aplica), tipo de acceso (Ingreso o Reingreso)
+   - **Then** el sistema retorna la lista completa de tickets con:
+     estado final del ticket
+     fecha y hora de ingreso (si aplica)
+     tipo de acceso (Ingreso o Reingreso)
 ---
 
 ### Edge Cases
@@ -89,13 +92,13 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 - **FR-002**: El sistema debe retornar el estado final del ticket (Validado / No asistió).
 - **FR-003**: El sistema debe incluir fecha y hora de ingreso cuando exista check-in.
 - **FR-004**: El sistema debe permitir consultar todos los registros de ingreso por evento.
-- **FR-004**: El sistema debe permitir incluir el tipo de acceso registrado (Ingreso o Reingreso)
-- **FR-005**: El sistema debe registrar en logs las consultas realizadas por módulos externos.
-- **FR-006**: El sistema debe responder a las consultas en tiempo real.
+- **FR-005**: El sistema debe permitir incluir el tipo de acceso registrado (Ingreso o Reingreso)
+- **FR-006**: El sistema debe registrar en logs las consultas realizadas por módulos externos.
+- **FR-007**: El sistema debe responder a las consultas en tiempo real.
 
 ### Key Entities *(include if feature involves data)*
 
-- **Registro de Ingreso:** Representa la confirmación de acceso al evento. Atributos clave: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, estadoIngreso.
+- **Registro de Ingreso:** Representa la confirmación de acceso al evento. Atributos clave: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, estadoIngreso, tipoAcceso (Ingreso / Reingreso)
 - **Ticket:** Representa el identificador único asociado a un asistente. Atributos: idTicket, codigoTicket, estado, categoria, eventoId, sesionId
 - **Evento:** Entidad que agrupa múltiples tickets y registros de ingreso. Atributos: idEvento, nombreEvento, fechaEvento, estadoEvento
 
