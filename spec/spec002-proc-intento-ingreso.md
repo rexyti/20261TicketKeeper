@@ -216,7 +216,7 @@ activa.
 
 -**FR-008**: System MUST garantizar control de concurrencia para evitar doble procesamiento.
 
--**FR-009**: System MUST actualizar el estado del ticket a “ingresado” cuando el intento sea exitoso.
+-**FR-009**: System MUST crear un RegistroIngreso y actualizar el estado del ticket a "ingresado" cuando el intento sea exitoso.
 
 -**FR-010**: System MUST almacenar el motivo de rechazo usando el diccionario de errores definido.
 
@@ -230,7 +230,9 @@ activa.
     Representa cada intento de validación de acceso.
     Atributos: id, ticket_id, fecha_hora, lector_id, resultado (aprobado/rechazado), código_error.
 
-**RegistroIngreso**
+**RegistroIngreso**:
+    Representa la confirmación de acceso al evento.
+    Atributos: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, tipoAcceso.
 
 **Lector/Puerta**:
     Representa el dispositivo o acceso físico.
