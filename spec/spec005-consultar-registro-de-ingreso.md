@@ -55,11 +55,11 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 
 1. **Scenario**: Consulta masiva de registros
    - **Given** un evento con múltiples registros de ingreso
-   - **When** el módulo de liquidacion solicita los registros del evento
+   - **When** el módulo de liquidación solicita los registros del evento
    - **Then** el sistema retorna la lista completa de tickets con:
-     estado final del ticket
-     fecha y hora de ingreso (si aplica)
-     tipo de acceso (Ingreso o Reingreso)
+   estado final del ticket
+   fecha y hora de ingreso (si aplica)
+   tipo de acceso (Ingreso o Reingreso)
 ---
 
 ### Edge Cases
@@ -92,7 +92,7 @@ Puede probarse consultando los registros de un evento con múltiples tickets en 
 - **FR-002**: El sistema debe retornar el estado final del ticket (Validado / No asistió).
 - **FR-003**: El sistema debe incluir fecha y hora de ingreso cuando exista check-in.
 - **FR-004**: El sistema debe permitir consultar todos los registros de ingreso por evento.
-- **FR-005**: El sistema debe permitir incluir el tipo de acceso registrado (Ingreso o Reingreso)
+- **FR-005**: El sistema debe retornar el tipo de acceso registrado (Ingreso o Reingreso).
 - **FR-006**: El sistema debe registrar en logs las consultas realizadas por módulos externos.
 - **FR-007**: El sistema debe responder a las consultas en tiempo real.
 
