@@ -32,7 +32,10 @@ Como encargado de control de acceso, quiero registrar el check-in de un asistent
    - **And** la puerta corresponde a la zona permitida.
    - **And** el ticket no ha sido previamente utilizado.
    - **When** El encargado procesa el intento de ingreso.
-   - **Then** El sistema registra el check-in como "Exitoso" y actualiza la capacidad del recinto.
+   - **Then** el sistema crea un RegistroIngreso.
+   - **And** guarda idTicket, idEvento, fechaHoraIngreso y puertaAsignada.
+   - **And** registra tipoAcceso = "Ingreso".
+   - **And** actualiza la capacidad del recinto
    - **And** devuelve respuesta "Ingreso Exitoso"
 ---
 
@@ -226,6 +229,8 @@ activa.
 **IntentoIngreso**:
     Representa cada intento de validación de acceso.
     Atributos: id, ticket_id, fecha_hora, lector_id, resultado (aprobado/rechazado), código_error.
+
+**RegistroIngreso**
 
 **Lector/Puerta**:
     Representa el dispositivo o acceso físico.
