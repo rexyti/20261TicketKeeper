@@ -90,7 +90,7 @@ tipo de acceso (Ingreso o Reingreso)
 ### Functional Requirements
 
 - **FR-001**: El sistema debe permitir consultar el registro de ingreso de un ticket específico.
-- **FR-002**: El sistema debe retornar el estado final del ticket (Validado / No asistió).
+- **FR-002**: El sistema debe retornar el estado final del ticket (Validado / No se realizó check-in).
 - **FR-003**: El sistema debe incluir fecha y hora de ingreso cuando exista check-in.
 - **FR-004**: El sistema debe permitir consultar todos los registros de ingreso por evento.
 - **FR-005**: El sistema debe retornar el tipo de acceso registrado (Ingreso o Reingreso).
