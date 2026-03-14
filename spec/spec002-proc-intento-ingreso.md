@@ -178,7 +178,7 @@ El encargado introduce manualmente el código del ticket, el sistema valida el t
 → El sistema debe rechazar el intento y devolver error “Ticket no encontrado”, registrando el intento como fallido.
 
 ¿Qué pasa si hay pérdida de conexión con la base de datos?
-→ El sistema debe devolver error técnico y no permitir el ingreso.
+→ El sistema debe devolver error técnico y no permitir el ingreso o hacer uso de una base de datos local.
 
 ¿Qué pasa si dos lectores procesan el mismo ticket exactamente al mismo tiempo?
 → El sistema debe garantizar atomicidad y evitar doble check-in (control de concurrencia).
