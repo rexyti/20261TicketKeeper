@@ -234,7 +234,7 @@ activa.
     Representa la confirmación de acceso al evento.
     Atributos: idTicket, idEvento, fechaHoraIngreso, puertaAsignada, tipoAcceso.
 
-**Lector/Puerta**:
+**Lector**:
     Representa el dispositivo o acceso físico.
     Atributos: id, zona_asignada, estado.
 
